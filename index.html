@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>For Avantika ❤️</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     body {
       margin: 0;
@@ -12,10 +13,11 @@
       justify-content: center;
       align-items: center;
       background: linear-gradient(135deg, #ff758c, #ff7eb3);
-      font-family: 'Arial', sans-serif;
+      font-family: Arial, sans-serif;
       overflow: hidden;
       text-align: center;
     }
+
     .container {
       background: white;
       padding: 25px;
@@ -23,46 +25,90 @@
       max-width: 350px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.2);
       animation: fadeIn 1s ease;
+      position: relative;
     }
+
     h1 {
       color: #ff4d6d;
+      margin-bottom: 10px;
     }
+
     p {
       font-size: 18px;
+      margin-bottom: 15px;
     }
+
+    h2 {
+      margin-top: 10px;
+    }
+
     button {
       padding: 10px 18px;
       font-size: 16px;
       border: none;
       border-radius: 20px;
       cursor: pointer;
-      margin: 10px;
+      margin: 8px;
     }
+
     #yesBtn {
       background: #ff4d6d;
       color: white;
     }
+
     #noBtn {
       background: #ccc;
       position: absolute;
     }
+
     img {
       width: 100%;
       border-radius: 15px;
       margin-top: 15px;
       display: none;
     }
+
+    /* Celebration text */
+    #celebration {
+      display: none;
+      color: #ff4d6d;
+      animation: pop 0.8s ease-in-out infinite alternate;
+    }
+
+    @keyframes pop {
+      from { transform: scale(1); }
+      to { transform: scale(1.15); }
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: fixed;
+      bottom: -20px;
+      font-size: 24px;
+      animation: floatUp 3s linear forwards;
+    }
+
+    @keyframes floatUp {
+      to {
+        transform: translateY(-110vh);
+        opacity: 0;
+      }
+    }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: scale(0.9); }
       to { opacity: 1; transform: scale(1); }
     }
   </style>
 </head>
+
 <body>
 
   <div class="container">
     <h1>Avantika ❤️</h1>
-    <p>Will you be my Valentine?</p>
+
+    <p id="question">Will you be my Valentine?</p>
+    <h2 id="celebration">WOOHOOO 💖🎉</h2>
 
     <button id="yesBtn">Yes 😍</button>
     <button id="noBtn">No 🙈</button>
@@ -74,7 +120,10 @@
     const noBtn = document.getElementById("noBtn");
     const yesBtn = document.getElementById("yesBtn");
     const photo = document.getElementById("photo");
+    const question = document.getElementById("question");
+    const celebration = document.getElementById("celebration");
 
+    // Make NO button run away 😈
     noBtn.addEventListener("mouseover", () => {
       const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
       const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
@@ -82,10 +131,24 @@
       noBtn.style.top = y + "px";
     });
 
+    // YES click celebration 🎉
     yesBtn.addEventListener("click", () => {
       photo.style.display = "block";
+      celebration.style.display = "block";
+      question.style.display = "none";
       yesBtn.style.display = "none";
       noBtn.style.display = "none";
+
+      // Floating hearts
+      for (let i = 0; i < 20; i++) {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerText = "💖";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = 2 + Math.random() * 2 + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 3000);
+      }
     });
   </script>
 
