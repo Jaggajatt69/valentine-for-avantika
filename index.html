@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For Avantika ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+      text-align: center;
+    }
+    .container {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      max-width: 350px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      animation: fadeIn 1s ease;
+    }
+    h1 {
+      color: #ff4d6d;
+    }
+    p {
+      font-size: 18px;
+    }
+    button {
+      padding: 10px 18px;
+      font-size: 16px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      margin: 10px;
+    }
+    #yesBtn {
+      background: #ff4d6d;
+      color: white;
+    }
+    #noBtn {
+      background: #ccc;
+      position: absolute;
+    }
+    img {
+      width: 100%;
+      border-radius: 15px;
+      margin-top: 15px;
+      display: none;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Avantika ❤️</h1>
+    <p>Will you be my Valentine?</p>
+
+    <button id="yesBtn">Yes 😍</button>
+    <button id="noBtn">No 🙈</button>
+
+    <img id="photo" src="photo.jpg" alt="Us together">
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const photo = document.getElementById("photo");
+
+    noBtn.addEventListener("mouseover", () => {
+      const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+      const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    });
+
+    yesBtn.addEventListener("click", () => {
+      photo.style.display = "block";
+      yesBtn.style.display = "none";
+      noBtn.style.display = "none";
+    });
+  </script>
+
+</body>
+</html>
